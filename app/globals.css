@@ -1,26 +1,206 @@
+/* MASTER TAILWIND CONFIG */
+
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ========= Root Theme Variables ========= */
+@theme {
+  --color-primary-100: #FFE8F0;
+  --color-primary: #EE2B69;
+  --color-secondary: #FBE843;
+
+  --color-black-100: #333333;
+  --color-black-200: #141413;
+  --color-black-300: #7d8087;
+  --color-black: #000000;
+
+  --color-white-100: #f7f7f7;
+  --color-white: #ffffff;
+
+  /* Fonts */
+  --font-sans: "Work Sans", sans-serif;
+
+  /* Border radius */
+  --radius: 0.5rem;
+
+  /* Shadows */
+  --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+  --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+  --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
 }
 
+/* ========= Dark Mode ========= */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+/* ========= Inline Theme Mapping ========= */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background, #ffffff);
+  --color-foreground: var(--foreground, #171717);
+
+  --color-primary: var(--color-primary);
+  --color-primary-100: var(--color-primary-100);
+  --color-secondary: var(--color-secondary);
+  --color-jayanshu: var(--color-jayanshu);
+
+  --color-black: var(--color-black);
+  --color-black-100: var(--color-black-100);
+  --color-black-200: var(--color-black-200);
+  --color-black-300: var(--color-black-300);
+
+  --color-white: var(--color-white);
+  --color-white-100: var(--color-white-100);
+
+  --font-sans: var(--font-sans);
+
+  --shadow-100: var(--shadow-100);
+  --shadow-200: var(--shadow-200);
+  --shadow-300: var(--shadow-300);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ========= Root CSS Variables ========= */
+:root {
+  --color-primary-100: #FFE8F0;
+  --color-primary: #EE2B69;
+  --color-secondary: #FBE843;
+
+  --color-black-100: #333333;
+  --color-black-200: #141413;
+  --color-black-300: #7d8087;
+  --color-black: #000000;
+
+  --color-white-100: #f7f7f7;
+  --color-white: #ffffff;
+
+  --color-jayanshu: #875857;
+
+  /* Fonts */
+  --font-sans: "Work Sans", sans-serif;
+
+  /* Border radius */
+  --radius: 0.5rem;
+
+  /* Shadows */
+  --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+  --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+  --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
+}
+
+
+/* ========= Base Styles ========= */
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+/* ========= Utilities & Components ========= */
+@layer utilities {
+  /* Flex Helpers */
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  /* Text Utilities */
+  .text-30-extrabold {
+    @apply text-[30px] font-extrabold text-white;
+  }
+  .text-30-bold {
+    @apply text-[30px] font-bold text-black;
+  }
+  .text-30-semibold {
+    @apply font-semibold text-[30px] text-black;
+  }
+  .text-26-semibold {
+    @apply font-semibold text-[26px] text-black;
+  }
+  .text-24-black {
+    @apply text-[24px] font-black text-black;
+  }
+  .text-20-medium {
+    @apply font-medium text-[20px] text-black;
+  }
+  .text-16-medium {
+    @apply font-medium text-[16px] text-black;
+  }
+  .text-14-normal {
+    @apply font-normal text-sm text-[var(--color-white-100)]/80;
+  }
+
+  /* Containers */
+  .pink_container {
+    @apply w-full min-h-[530px] flex flex-col justify-center items-center py-10 px-6;
+    background-color: var(--color-primary);
+  }
+  .section_container {
+    @apply px-6 py-10 max-w-7xl mx-auto;
+  }
+
+  /* Headings */
+  .tag {
+    @apply font-bold uppercase rounded-sm relative px-6 py-3;
+    background-color: var(--color-secondary);
+  }
+  .heading {
+    @apply uppercase font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5 px-6 py-3;
+    background-color: var(--color-black);
+  }
+  .sub-heading {
+    @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
+  }
+
+  /* Grids */
+  .nav-grid {
+    @apply grid grid-cols-3 gap-2;
+  }
+  .card_grid {
+    @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+  }
+  .card_grid-sm {
+    @apply grid sm:grid-cols-2 gap-5;
+  }
+
+  /* Profile */
+  .profile_container {
+    @apply w-full pb-10 pt-20 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-10;
+  }
+  .profile_card {
+    @apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center border-[5px] border-[var(--color-black)] shadow-[var(--shadow-100)] rounded-[30px] relative h-fit max-lg:w-full;
+    background-color: var(--color-primary);
+  }
+  .profile_title {
+    @apply absolute -top-9 px-5 py-3 w-11/12 rounded-[20px] border-[5px] border-[var(--color-black)] shadow-[var(--shadow-100)];
+    background-color: var(--color-white);
+  }
+  .profile_image {
+    @apply rounded-full object-cover border-[3px] border-[var(--color-black)];
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-dotted border-zinc-400 max-w-4xl my-10 mx-auto;
+  }
+
+  /* Search Form */
+  .search-form {
+    @apply max-w-3xl w-full min-h-[80px] flex items-center gap-5 px-5 rounded-[80px] border-[5px] border-[var(--color-black)] bg-[var(--color-white)] text-[24px] mt-8;
+  }
+  .search-input {
+    @apply flex-1 font-bold placeholder:font-semibold placeholder:text-[var(--color-black-100)] outline-none;
+  }
+  .search-btn {
+    @apply w-[50px] h-[50px] rounded-full flex justify-center items-center bg-[var(--color-black)];
+  }
+
+  /* Buttons */
+  .login {
+    @apply border-[5px] py-4 border-[var(--color-black)] bg-[var(--color-white)] text-[var(--color-black)] font-medium shadow-[var(--shadow-100)] hover:shadow-none transition-all duration-500;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}

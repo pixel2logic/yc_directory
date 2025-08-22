@@ -18,12 +18,10 @@ const Navbar = async () => {
               <Link href="/startup/create">
                 <span>Create</span>
               </Link>
-              <form
-                action={async () => {
+              <form action={async () => {
                   "use server";
                   await signOut();
-                }}
-              >
+                }}>
                 <button type="submit">Logout</button>
               </form>
               <Link href={`/user/${session?.user?.id}`}>
@@ -31,12 +29,10 @@ const Navbar = async () => {
               </Link>
             </>
           ) : (
-            <form
-              action={async () => {
+            <form action={async () => {
                 "use server";
                 await signIn("github");
-              }}
-            >
+              }}>
               <button type="submit">Login</button>
             </form>
           )}
