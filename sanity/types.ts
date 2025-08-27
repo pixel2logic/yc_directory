@@ -199,7 +199,7 @@ export type STARTUPS_BY_ID_QUERYResult = {
   author: {
     _id: string;
     name: string | null;
-    username: null;
+    uasername: null;
     image: string | null;
     bio: string | null;
   } | null;
@@ -209,6 +209,23 @@ export type STARTUPS_BY_ID_QUERYResult = {
   image: string | null;
   pitch: string | null;
 } | null;
+// Variable: STARTUPS_VIEWS_QUERY
+// Query: *[_type == "startup" && _id == $id][0]{    _id, views,  }
+export type STARTUPS_VIEWS_QUERYResult = {
+  _id: string;
+  views: number | null;
+} | null;
+// Variable: AUTHOR_BY_GITHUB_ID_QUERY
+// Query: *[_type == "author" && id == $id][0]{    _id,    id,    name,    username,    email,    image,    bio  }
+export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
+  _id: string;
+  id: number | null;
+  name: string | null;
+  username: string | null;
+  email: string | null;
+  image: string | null;
+  bio: string | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -216,5 +233,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"startup\" && defined(slug.current) && (\n    $query == \"\" || // if empty, return all\n    title match $query || \n    category match $query || \n    description match $query || \n    author->name match $query\n  )] | order(_createdAt desc) {\n    _id, \n    title, \n    slug, \n    _createdAt, \n    author -> {\n      _id, name, image, bio\n    },\n    views,\n    description, \n    category, \n    image,\n  }\n": STARTUPS_QUERYResult;
     "*[_type==\"startup\" && _id == $id][0]{\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author -> {\n    _id, name, uasername, image, bio\n  },\n  views, \n  description,\n  category,\n  image,\n  pitch,\n}\n": STARTUPS_BY_ID_QUERYResult;
+    "\n  *[_type == \"startup\" && _id == $id][0]{\n    _id, views,\n  }  \n": STARTUPS_VIEWS_QUERYResult;
+    "\n  *[_type == \"author\" && id == $id][0]{\n    _id,\n    id,\n    name,\n    username,\n    email,\n    image,\n    bio\n  }\n  ": AUTHOR_BY_GITHUB_ID_QUERYResult;
   }
 }
