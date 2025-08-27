@@ -129,6 +129,18 @@
   .pink_container {
     @apply w-full min-h-[530px] flex flex-col justify-center items-center py-10 px-6;
     background-color: var(--color-primary);
+
+    /* merged pattern styles */
+    background-image: linear-gradient(
+      to right,
+      transparent 49.5%,
+      color-mix(in srgb, var(--color-secondary) 20%, transparent) 49.5%,
+      color-mix(in srgb, var(--color-secondary) 60%, transparent) 50.5%,
+      transparent 50.5%
+    );
+    background-size: 5% 100%;
+    background-position: center;
+    background-repeat: repeat-x;
   }
   .section_container {
     @apply px-6 py-10 max-w-7xl mx-auto;
@@ -138,7 +150,17 @@
   .tag {
     @apply font-bold uppercase rounded-sm relative px-6 py-3;
     background-color: var(--color-secondary);
+
+    /* merged tag-tri styles */
+    @apply before:content-[''] before:absolute before:top-2 before:left-2 
+           before:border-t-[10px] before:border-t-[var(--color-black)] 
+           before:border-r-[10px] before:border-r-transparent;
+
+    @apply after:content-[''] after:absolute after:bottom-2 after:right-2 
+           after:border-b-[10px] after:border-b-[var(--color-black)] 
+           after:border-l-[10px] after:border-l-transparent;
   }
+
   .heading {
     @apply uppercase font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5 px-6 py-3;
     background-color: var(--color-black);
@@ -260,25 +282,25 @@
   }
 
   /* Pattern + Tag triangle */
-  .pattern {
+  /* .pattern {
     background-image: linear-gradient(
       to right,
       transparent 49.5%,
-      rgba(251, 232, 67, 0.2) 49.5%,
-      rgba(251, 232, 67, 0.6) 50.5%,
+      color-mix(in srgb, var(--color-secondary) 20%, transparent) 49.5%,
+      color-mix(in srgb, var(--color-secondary) 60%, transparent) 50.5%,
       transparent 50.5%
     );
     background-size: 5% 100%;
     background-position: center;
     background-repeat: repeat-x;
-  }
+  } */
 
-  .tag-tri {
+  /* .tag-tri {
     @apply before:content-[''] before:absolute before:top-2 before:left-2 
            before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent 
            after:content-[''] after:absolute after:bottom-2 after:right-2 
            after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
-  }
+  } */
 
   /* Navbar */
   .avatar {
