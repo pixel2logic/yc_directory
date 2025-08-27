@@ -172,7 +172,7 @@ export type AllSanitySchemaTypes = Startup | Author | Markdown | SanityImagePale
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: STARTUPS_QUERY
-// Query: *[_type=="startup" && defined(slug.current)] | order(_createdAt desc) {  _id,   title,   slug,   _createdAt,   author -> {    _id, name, image, bio  },  views,  description,   category,   image}
+// Query: *[_type == "startup" && defined(slug.current) && (    $query == "" || // if empty, return all    title match $query ||     category match $query ||     description match $query ||     author->name match $query  )] | order(_createdAt desc) {    _id,     title,     slug,     _createdAt,     author -> {      _id, name, image, bio    },    views,    description,     category,     image  }
 export type STARTUPS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -194,6 +194,6 @@ export type STARTUPS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type==\"startup\" && defined(slug.current)] | order(_createdAt desc) {\n  _id, \n  title, \n  slug, \n  _createdAt, \n  author -> {\n    _id, name, image, bio\n  },\n  views,\n  description, \n  category, \n  image\n}": STARTUPS_QUERYResult;
+    "\n  *[_type == \"startup\" && defined(slug.current) && (\n    $query == \"\" || // if empty, return all\n    title match $query || \n    category match $query || \n    description match $query || \n    author->name match $query\n  )] | order(_createdAt desc) {\n    _id, \n    title, \n    slug, \n    _createdAt, \n    author -> {\n      _id, name, image, bio\n    },\n    views,\n    description, \n    category, \n    image\n  }\n": STARTUPS_QUERYResult;
   }
 }
