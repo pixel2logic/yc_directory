@@ -259,7 +259,8 @@
   }
 
   .startup-form_error {
-    @apply text-red-500 mt-2 ml-5;
+    @apply !text-red-500 mt-2 ml-5;
+    
   }
 
   .startup-form_editor {
