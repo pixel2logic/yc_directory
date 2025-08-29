@@ -1,4 +1,4 @@
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import StartupForm from "@/components/StartupForm";
 
