@@ -11,7 +11,6 @@ type FormState = {
   _id?: string; // optional, returned when startup is created
 };
 
-
 export const createPitch = async (
   state: FormState,
   form: FormData,
