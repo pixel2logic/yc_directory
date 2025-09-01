@@ -2,12 +2,27 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
-import { Author, Startup } from "@/sanity/types";
+import { Slug } from "@/sanity/types";
 import { Skeleton } from "./ui/skeleton";
 
-export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
+export type StartupTypeCard = {
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: {
+    _id: string;
+    name: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  views: number | null;
+  description: string | null;
+  category: string | null;
+  image: string | null;
+};
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
@@ -42,8 +57,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={author?.image!}
-            alt={author?.name!}
+            src={author?.image ?? "/avatar.png"}
+            alt={author?.name ?? "Anonymous"}
             width={48}
             height={48}
             className="rounded-full"
@@ -53,7 +68,13 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
-        <img src={image} alt="placeholder" className="startup-card_img" />
+<Image
+  src={image ?? "/fallback.png"}
+  alt={title ?? "Startup image"}
+  width={600}
+  height={400}
+  className="startup-card_img"
+/>
       </Link>
 
       <div className="flex-between gap-3 mt-5">
@@ -71,9 +92,9 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 export const StartupCardSkeleton = () => (
   <>
     {[0, 1, 2, 3, 4].map((index: number) => (
-      <div key={index}>
+      <li key={cn("skeleton", index)}>
         <Skeleton className="startup-card_skeleton" />
-      </div>
+      </li>
     ))}
   </>
 );
