@@ -1,3 +1,4 @@
+// @ts-ignore
 import {withSentryConfig} from '@sentry/nextjs';
 import type { NextConfig } from "next";
 

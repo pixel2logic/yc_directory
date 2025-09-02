@@ -1,16 +1,15 @@
-import NextAuth from "next-auth";
+import "next-auth";
+import { JWT as DefaultJWT } from "next-auth/jwt";
+import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-  interface User {
-    id?: string;
+  interface Session {
+    user: {
+      id: string;                     // Your custom field
+    } & DefaultSession["user"];       // Merge with default user fields
   }
 
-  interface Session {
-    user?: {
-      id?: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-    };
+  interface JWT extends DefaultJWT {
+    id: string;
   }
 }

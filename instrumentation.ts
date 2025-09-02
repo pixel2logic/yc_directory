@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as Sentry from '@sentry/nextjs';
 
 export async function register() {

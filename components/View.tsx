@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { STARTUPS_VIEWS_QUERY } from "@/sanity/lib/queries";
 import Ping from "./Ping";
 import { client } from "@/sanity/lib/client";

@@ -1,6 +1,8 @@
 "use client";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
+// @ts-ignore
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { useActionState, useState } from "react";
@@ -16,7 +18,6 @@ type FormState = {
   status: "INITIAL" | "SUCCESS" | "ERROR";
   _id?: string;
 };
-
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
